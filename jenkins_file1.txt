@@ -1,0 +1,17 @@
+node {
+   stage('checkout') { 
+      checkout scm;
+      def url =readProperties file: 'properties_file'
+      echo "${url}"
+      def Var1= url.GIT_URL
+      echo "Var1=${Var1}"
+      git "${Var1}"
+   }
+   stage('Build') {
+          sh "mvn clean install" 
+   }
+stage('SonarQube analysis') 
+{ 
+         sh 'mvn sonar:sonar -Dsonar.host.url=http://my77009dns.EastUS2.cloudapp.azure.com:9000/sonar' 
+     }
+}
