@@ -1,7 +1,7 @@
 node {
    stage('checkout') { 
       checkout scm;
-      def url =readProperties file: 'properties_file.txt'
+      def url =readProperties file: 'properties_file'
       echo "${url}"
       def Var1= url.GIT_URL
       echo "Var1=${Var1}"
