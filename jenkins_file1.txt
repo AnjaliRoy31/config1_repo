@@ -14,17 +14,28 @@ node {
          sh 'mvn sonar:sonar -Dsonar.host.url=http://my77009dns.EastUS2.cloudapp.azure.com:9000/sonar' 
      }
      
-   stage('build management'){
-    script {
-        server = Artifactory.server props.ARTIFACTORY_ID
-        uploadSpec = """{
-            "files":[{
-            "pattern": "target/*.war",
-            "target": ""
-            }]
-        }"""
-        server.upload(uploadSpec)
-   }
+   stage ('deploying artifact'){
+
+def server =Artifactory.server 'ArtifactoryID'
+
+def uploadSpec="""{
+
+"files":[
+
+{
+
+  "pattern":"target/*.war",
+
+  "target":""
+
+}
+
+]
+
+}"""
+
+server.upload(uploadSpec)
+
 }
 
 stage('confirmation for build')
