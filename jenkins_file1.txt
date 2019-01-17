@@ -15,7 +15,7 @@ node {
      }
      
    stage('Build management') {
-        def server =Artifactory.server 'jfrog artifactory'
+        def server =Artifactory.server 'jfrog_artifactory'
         def uploadSpec="""{
         "files":[
         {
