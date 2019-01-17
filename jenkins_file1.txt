@@ -13,5 +13,36 @@ node {
    stage('SonarQube analysis') { 
          sh 'mvn sonar:sonar -Dsonar.host.url=http://my77009dns.EastUS2.cloudapp.azure.com:9000/sonar' 
      }
+     
+   stage('Build management') {
+        def server =Artifactory.server 'ArtifactoryID'
+        def uploadSpec="""{
+
+"files":[
+
+{
+
+  "pattern":"target/*.war",
+
+  "target":"repo/"
+
+}
+
+]
+
+}"""
+
+server.upload(uploadSpec)
+
+}
+
+stage('confirmation for build')
+
+{
+
+input message:'Do you want to send it to production?',ok:'YES'
+
+}
+   }
 
 }
