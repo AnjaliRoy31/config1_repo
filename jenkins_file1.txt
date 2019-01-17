@@ -16,7 +16,7 @@ node {
      
    stage ('deploying artifact'){
 
-def server =Artifactory.server 'http://my77009dns.eastus2.cloudapp.azure.com:8081/artifactory/jfrog_artifactory/'
+def server =Artifactory.server props.ARTIFACTORY_ID
 
 def uploadSpec="""{
 
