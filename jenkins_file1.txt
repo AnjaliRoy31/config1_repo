@@ -14,18 +14,17 @@ node {
          sh 'mvn sonar:sonar -Dsonar.host.url=http://my77009dns.EastUS2.cloudapp.azure.com:9000/sonar' 
      }
      
-   stage('Build management') {
-        def server =Artifactory.server 'http://my77009dns.eastus2.cloudapp.azure.com:8081/artifactory/webapp/#/admin/repository/local/jfrog_artifactory'
-        def uploadSpec="""{
-        "files":[
-        {
-        "pattern":"target/*.war",
-        "target":"jfrog_artifactory/"
-        }]
+   def uploadWarArtifactory('build management'){
+    script {
+        server = Artifactory.server props.ARTIFACTORY_ID
+        uploadSpec = """{
+            "files":[{
+            "pattern": "target/*.war",
+            "target": ""
+            }]
         }"""
-
-server.upload(uploadSpec)
-
+        server.upload(uploadSpec)
+   }
 }
 
 stage('confirmation for build')
