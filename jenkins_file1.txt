@@ -15,7 +15,7 @@ node {
      }
      
    stage('Build management') {
-        def server =Artifactory.server 'ArtifactoryID'
+        def server =Artifactory.server 'http://my77009dns.eastus2.cloudapp.azure.com:8081/artifactory/webapp/#/artifacts/browse/tree/General/repo'
         def uploadSpec="""{
 
 "files":[
