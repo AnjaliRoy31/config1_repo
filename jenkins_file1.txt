@@ -14,7 +14,7 @@ node {
          sh 'mvn sonar:sonar -Dsonar.host.url=http://my77009dns.EastUS2.cloudapp.azure.com:9000/sonar' 
      }
      
-   def uploadWarArtifactory('build management'){
+   stage('build management'){
     script {
         server = Artifactory.server props.ARTIFACTORY_ID
         uploadSpec = """{
