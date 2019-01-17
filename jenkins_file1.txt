@@ -15,22 +15,14 @@ node {
      }
      
    stage('Build management') {
-        def server =Artifactory.server 'http://my77009dns.eastus2.cloudapp.azure.com:8081/artifactory/webapp/#/artifacts/browse/tree/General/repo'
+        def server =Artifactory.server 'jfrog artifactory'
         def uploadSpec="""{
-
-"files":[
-
-{
-
-  "pattern":"target/*.war",
-
-  "target":"repo/"
-
-}
-
-]
-
-}"""
+        "files":[
+        {
+        "pattern":"target/*.war",
+        "target":"repo/"
+        }]
+        }"""
 
 server.upload(uploadSpec)
 
