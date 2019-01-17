@@ -43,6 +43,6 @@ stage('confirmation for build')
 input message:'Do you want to send it to production?',ok:'YES'
 
 }
-   }
+   
 
 }
