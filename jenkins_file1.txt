@@ -18,7 +18,7 @@ def url =readProperties file: 'properties_file.properties'
      
    stage ('deploying artifact'){
 
-def server =Artifactory.newserver url : "${url.ARTIFACTORY_ID}"
+def server =Artifactory.newserver "${url.ARTIFACTORY_ID}"
 
 def uploadSpec="""{
 
