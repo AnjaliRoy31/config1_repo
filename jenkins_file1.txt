@@ -18,7 +18,7 @@ def url =readProperties file: 'properties_file.properties'
      
    stage ('deploying artifact'){
 
-def server =Artifactory.newServer url: "http://my77009dns.eastus2.cloudapp.azure.com:8081/artifactory/webapp/#/home"
+def server =Artifactory.newServer url: "http://my77009dns.eastus2.cloudapp.azure.com:8081/artifactory/jfrog_artifactory"
 
 def uploadSpec="""{
 
