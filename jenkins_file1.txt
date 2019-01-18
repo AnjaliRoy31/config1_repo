@@ -18,7 +18,7 @@ def url =readProperties file: 'properties_file.properties'
      
    stage ('deploying artifact'){
 
-def server =Artifactory.newserver "${url.ARTIFACTORY_ID}"
+def server =Artifactory.newServer url: "http://my77009dns.EastUS2.cloudapp.azure.com:8001/artifactory"
 
 def uploadSpec="""{
 
