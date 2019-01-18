@@ -14,7 +14,7 @@ node {
          sh 'mvn sonar:sonar -Dsonar.host.url=http://my77009dns.EastUS2.cloudapp.azure.com:9000/sonar' 
            }
         stage ('deploying artifact'){
-         
+          sh 'cd target/';
           sh 'pwd';
           sh 'ls -a';
      def server =Artifactory.newServer url: "http://my77009dns.eastus2.cloudapp.azure.com:8081/artifactory/jfrog_artifactory"
