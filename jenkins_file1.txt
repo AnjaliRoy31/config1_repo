@@ -28,7 +28,7 @@ def uploadSpec="""{
 
   "pattern":"target/*.war",
 
-  "target":"repo/"
+  "target":"repository/"
 
 }
 
