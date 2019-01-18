@@ -1,7 +1,8 @@
 node {
+def url =readProperties file: 'properties_file.properties'
    stage('checkout') { 
       checkout scm;
-      def url =readProperties file: 'properties_file.properties'
+      
       echo "${url}"
       def Var1= url.GIT_URL
       echo "Var1=${Var1}"
@@ -26,7 +27,7 @@ def uploadSpec="""{
 
   "pattern":"target/*.war",
 
-  "target":""
+  "target":"repo/"
 
 }
 
