@@ -17,7 +17,7 @@ node {
           sh 'cd target';
           sh 'pwd';
           sh 'ls -a';
-     def server =Artifactory.newServer url: "http://my77009dns.eastus2.cloudapp.azure.com:8081/artifactory/jfrog_artifactory"
+     def server =Artifactory.newServer url: "http://ec2-18-219-85-214.us-east2.compute.amazonaws.com:8081/artifactory/jfrog_artifactory"
 
     def uploadSpec="""{
        "files":[
