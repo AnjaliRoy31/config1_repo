@@ -16,7 +16,7 @@ node {
      
    stage ('deploying artifact'){
 
-def server =Artifactory.server properties_file.properties.ARTIFACTORY_ID
+def server =Artifactory.server url.ARTIFACTORY_ID
 
 def uploadSpec="""{
 
