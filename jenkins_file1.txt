@@ -13,6 +13,21 @@ node {
         stage('SonarQube analysis') { 
          sh 'mvn sonar:sonar -Dsonar.host.url=http://my77009dns.EastUS2.cloudapp.azure.com:9000/sonar' 
            }
+	   
+	   stage('Docker Push'){
+			
+				sh  '''if [ "$(docker ps -a |grep tomcat | wc -l)" -ne 0 ]; then docker rm -f $(docker ps -a |grep tomcat | awk '{print $1}') ; fi'''
+				sh  '''if [ "$(docker images | wc -l)" -ne 0 ]; then docker rmi -f $(docker images | awk '{print $3}') ; fi'''
+				sh  "docker build -t tomcat:latest ."
+				sh    "docker images"
+				sh    "docker login -u 'anjiroy' -p 'Abhi@0331' "
+				sh    "docker tag tomcat:latest anjiroy/tomcat:latest"
+				sh    "docker push anjiroy/tomcat:latest"
+				sh    "docker images"
+			
+		   
+		}   
+	   
         stage ('deploying artifact'){
           sh 'cd target';
           sh 'pwd';
@@ -32,19 +47,7 @@ node {
 server.upload(uploadSpec)
 
 }
-stage('Docker Push'){
-			
-				sh  '''if [ "$(docker ps -a |grep tomcat | wc -l)" -ne 0 ]; then docker rm -f $(docker ps -a |grep tomcat | awk '{print $1}') ; fi'''
-				sh  '''if [ "$(docker images | wc -l)" -ne 0 ]; then docker rmi -f $(docker images | awk '{print $3}') ; fi'''
-				sh  "docker build -t tomcat:latest ."
-				sh    "docker images"
-				sh    "docker login -u 'anjiroy' -p 'Abhi@0331' "
-				sh    "docker tag tomcat:latest anjiroy/tomcat:latest"
-				sh    "docker push anjiroy/tomcat:latest"
-				sh    "docker images"
-			
-		   
-		}   
+
 stage('confirmation for build')
 
 {
