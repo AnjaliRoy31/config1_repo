@@ -15,7 +15,8 @@ node {
            }
 	   
 	   stage('Docker Push'){
-			
+			dir ("Playground")
+			{
 				//sh  '''if [ "$(docker ps -a |grep tomcat | wc -l)" -ne 0 ]; then docker rm -f $(docker ps -a |grep tomcat | awk '{print $1}') ; fi'''
 				//sh  '''if [ "$(docker images | wc -l)" -ne 0 ]; then docker rmi -f $(docker images | awk '{print $3}') ; fi'''
 				sh  "docker build -t tomcat:myimage ."
@@ -25,14 +26,14 @@ node {
 				sh    "docker push anjiroy/tomcat:myimage"
 				sh    "docker images"
 			
-		   
+		   }
 		}   
 	   
         stage ('deploying artifact'){
           sh 'cd target';
           sh 'pwd';
           sh 'ls -a';
-     def server =Artifactory.newServer url: "http://ec2-3-16-123-243.us-east-2.compute.amazonaws.com:8081/artifactory/",username: "admin",password: "password";
+     def server =Artifactory.newServer url: "http://ec2-18-224-202-57.us-east-2.compute.amazonaws.com:8081/artifactory/",username: "admin",password: "password";
      
 
 
