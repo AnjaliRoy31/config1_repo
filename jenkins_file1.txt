@@ -32,7 +32,7 @@ node {
           sh 'cd target';
           sh 'pwd';
           sh 'ls -a';
-     def server =Artifactory.newServer url: "http://ec2-3-16-123-243.us-east-2.compute.amazonaws.com:8081/artifactory/",username: "admin",password: "admin";
+     def server =Artifactory.newServer url: "http://ec2-3-16-123-243.us-east-2.compute.amazonaws.com:8081/artifactory/",username: "admin",password: "password";
      
 
 
