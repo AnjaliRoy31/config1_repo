@@ -41,7 +41,7 @@ node {
        "files":[
           {
            "pattern":"target/*.war",
-           "target":"repo"
+           "target":"repo1"
           }
         ]
      }"""
