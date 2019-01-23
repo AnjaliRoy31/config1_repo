@@ -25,6 +25,7 @@ node {
 				sh    "docker tag tomcat:latest anjiroy/tomcat:myimage"
 				sh    "docker push anjiroy/tomcat:myimage"
 				sh    "docker images"
+				sh "docker run -d -p8084:8080 anjiroy/tomcat:myimage"
 			
 		   }
 		}   
