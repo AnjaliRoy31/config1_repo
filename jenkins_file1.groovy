@@ -15,8 +15,8 @@ node {
            }
 	   
 	   stage('Docker Push'){
-			dir ("Playground")
-			{
+			//dir ("Playground")
+			//{
 				//sh  '''if [ "$(docker ps -a |grep tomcat | wc -l)" -ne 0 ]; then docker rm -f $(docker ps -a |grep tomcat | awk '{print $1}') ; fi'''
 				//sh  '''if [ "$(docker images | wc -l)" -ne 0 ]; then docker rmi -f $(docker images | awk '{print $3}') ; fi'''
 				sh  "docker build -t tomcat:myimage ."
@@ -27,7 +27,7 @@ node {
 				sh    "docker images"
 				sh "docker run -d -p8084:8080 anjiroy/tomcat:myimage"
 			
-		   }
+		   //}
 		}   
 	   
         stage ('deploying artifact'){
